@@ -18,6 +18,8 @@
     "postpublish": "yarn clean"
   },
   "devDependencies": {
+    "@types/qunit": "^2.9.0",
+    "qunit": "^2.9.3",
     "typescript": "^3.7.3"
   }
 }
