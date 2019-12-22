@@ -13,13 +13,19 @@
     "lint": "eslint --ext js,ts .",
     "test": "yarn build && qunit lib/tests && yarn clean",
     "test:dev": "yarn build && qunit lib/tests",
-    "test:debug": "yarn build && node --inspect-brk=1337 node_modules/.bin/qunit lib/tests",
+    "test:debug": "yarn build && node --inspect-brk node_modules/.bin/qunit lib/tests",
     "prepublishOnly": "yarn build",
     "postpublish": "yarn clean"
   },
   "devDependencies": {
     "@types/qunit": "^2.9.0",
+    "@types/tmp": "^0.1.0",
+    "fixturify": "^1.2.0",
     "qunit": "^2.9.3",
+    "tmp": "^0.1.0",
     "typescript": "^3.7.3"
+  },
+  "dependencies": {
+    "recursive-readdir-sync": "^1.0.6"
   }
 }

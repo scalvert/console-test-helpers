@@ -3,7 +3,7 @@ import { mockConsole, resetConsole } from '../mock-console';
 
 const { test } = QUnit;
 
-QUnit.module('mockConsole', function() {
+QUnit.module('mock-console', function() {
   test('mocks the console when called', function(assert) {
     mockConsole();
 

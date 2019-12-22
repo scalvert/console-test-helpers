@@ -1,6 +1,8 @@
 import { IndexableConsole } from './interfaces';
 import ConsoleState from './console-state';
 
+type MockConsole = { resetConsole: () => void; consoleState: ConsoleState };
+
 let originalConsole: any;
 let consoleState: ConsoleState;
 
@@ -16,7 +18,7 @@ let consoleProxyHandler: ProxyHandler<IndexableConsole> = {
   },
 };
 
-export function mockConsole(): { resetConsole: () => void; consoleState: ConsoleState } {
+export function mockConsole(): MockConsole {
   originalConsole = console;
   consoleState = new ConsoleState();
 
