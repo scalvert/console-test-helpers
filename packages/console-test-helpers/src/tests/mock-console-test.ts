@@ -35,12 +35,30 @@ QUnit.module('mockConsole', function() {
   test('captures state when console methods are called', function(assert) {
     let state;
     mockConsole();
-    debugger;
+
     console.log('This is a message');
 
     state = getConsoleState();
 
     assert.equal(state.getState('log'), 'This is a message');
+
+    resetConsole();
+  });
+
+  test('captures state when console methods are called repeatedly', function(assert) {
+    let state;
+    mockConsole();
+
+    console.log('This is a message');
+    console.log('And so is this');
+
+    state = getConsoleState();
+
+    assert.equal(
+      state.getState('log'),
+      `This is a message
+And so is this`
+    );
 
     resetConsole();
   });

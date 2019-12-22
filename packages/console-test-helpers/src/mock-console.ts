@@ -32,7 +32,6 @@ let consoleProxyHandler: ProxyHandler<IndexableConsole> = {
 
     return function(...args: any[]) {
       consoleState.record(method, args[0]);
-      debugger;
       originalMethod.apply(originalConsole, args);
     };
   },
@@ -41,14 +40,13 @@ let consoleProxyHandler: ProxyHandler<IndexableConsole> = {
 export function mockConsole() {
   originalConsole = console;
   consoleState = new ConsoleState();
-  // eslint-disable-next-line no-global-assign
+
   console = new Proxy(console, consoleProxyHandler);
 
   return resetConsole;
 }
 
 export function resetConsole() {
-  // eslint-disable-next-line no-global-assign
   console = originalConsole;
 }
 

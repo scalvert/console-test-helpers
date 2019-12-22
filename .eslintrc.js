@@ -17,6 +17,7 @@ module.exports = {
     'prettier/prettier': 'error',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
+    'no-global-assign': ['error', { exceptions: ['console'] }],
   },
   overrides: [
     // node files
