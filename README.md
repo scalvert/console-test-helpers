@@ -1,5 +1,4 @@
-console-test-helpers
-==============================================================================
+# console-test-helpers
 
 When building CLIs that output to the console, it's useful to be able to record
 and validate the console output for subsequent verification. Doing so requires a
@@ -11,21 +10,17 @@ few useful helpers:
 
 `console-test-helpers` provides all of the above.
 
-
-Installation
-------------------------------------------------------------------------------
+## Installation
 
 ```bash
-yarn add console-ui-test-helpers --dev
+yarn add console-test-helpers --dev
 
 # or
 
-npm install console-ui-test-helpers --save-dev
+npm install console-test-helpers --save-dev
 ```
 
-
-Usage
-------------------------------------------------------------------------------
+## Usage
 
 `console-test-helpers` replaces the real console with a fake, which stores the output
 in addition to acting as a proxy for all console calls. This means the console will behave
@@ -50,13 +45,10 @@ module('With mocked console', function(hooks) {
 });
 ```
 
-Contributing
-------------------------------------------------------------------------------
+## Contributing
 
 See the [Contributing](CONTRIBUTING.md) guide for details.
 
-
-License
-------------------------------------------------------------------------------
+## License
 
 This project is licensed under the [MIT License](LICENSE.md).

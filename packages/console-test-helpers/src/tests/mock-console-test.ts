@@ -1,5 +1,5 @@
 import * as util from 'util';
-import { mockConsole, resetConsole, getConsoleState } from '../mock-console';
+import { mockConsole, resetConsole } from '../mock-console';
 
 const { test } = QUnit;
 
@@ -23,39 +23,33 @@ QUnit.module('mockConsole', function() {
   });
 
   test('resets the console when resetConsole called via destructor', function(assert) {
-    let reset = mockConsole();
+    let { resetConsole } = mockConsole();
 
     assert.ok(util.types.isProxy(console));
 
-    reset();
+    resetConsole();
 
     assert.notOk(util.types.isProxy(console));
   });
 
   test('captures state when console methods are called', function(assert) {
-    let state;
-    mockConsole();
+    let { consoleState } = mockConsole();
 
     console.log('This is a message');
 
-    state = getConsoleState();
-
-    assert.equal(state.getState('log'), 'This is a message');
+    assert.equal(consoleState.getState('log'), 'This is a message');
 
     resetConsole();
   });
 
   test('captures state when console methods are called repeatedly', function(assert) {
-    let state;
-    mockConsole();
+    let { consoleState } = mockConsole();
 
     console.log('This is a message');
     console.log('And so is this');
 
-    state = getConsoleState();
-
     assert.equal(
-      state.getState('log'),
+      consoleState.getState('log'),
       `This is a message
 And so is this`
     );

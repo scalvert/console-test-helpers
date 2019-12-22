@@ -1,26 +1,5 @@
 import { IndexableConsole } from './interfaces';
-
-class ConsoleState {
-  state: Map<string, Array<string>>;
-
-  constructor() {
-    this.state = new Map<string, Array<string>>();
-  }
-
-  record(method: string, message: string) {
-    if (!this.state.has(method)) {
-      this.state.set(method, []);
-    }
-
-    let methodState = this.state.get(method);
-
-    methodState?.push(message);
-  }
-
-  getState(method: string): string {
-    return this.state.get(method)?.join('\n') || '';
-  }
-}
+import ConsoleState from './console-state';
 
 let originalConsole: any;
 let consoleState: ConsoleState;
@@ -37,19 +16,15 @@ let consoleProxyHandler: ProxyHandler<IndexableConsole> = {
   },
 };
 
-export function mockConsole() {
+export function mockConsole(): { resetConsole: () => void; consoleState: ConsoleState } {
   originalConsole = console;
   consoleState = new ConsoleState();
 
   console = new Proxy(console, consoleProxyHandler);
 
-  return resetConsole;
+  return { resetConsole, consoleState };
 }
 
-export function resetConsole() {
+export function resetConsole(): void {
   console = originalConsole;
-}
-
-export function getConsoleState(): ConsoleState {
-  return consoleState;
 }
