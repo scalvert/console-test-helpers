@@ -22,7 +22,7 @@ export default class FixtureCache {
       let files = recursiveReadSync(fixturePath);
 
       files.forEach((file: string) => {
-        this.fixtures.set(path.basename(file), getFileContents(file));
+        this.fixtures.set(path.basename(file, '.txt'), getFileContents(file));
       });
     } catch (e) {
       console.log(`Fixtures located in ${fixturePath} could not be loaded. Reason: ${e.message}`);

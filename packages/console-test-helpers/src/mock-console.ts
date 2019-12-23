@@ -1,10 +1,9 @@
-import { IndexableConsole } from './interfaces';
+import { IndexableConsole, MockConsole, MockConsoleOptions } from './types';
 import ConsoleState from './console-state';
-
-type MockConsole = { resetConsole: () => void; consoleState: ConsoleState };
 
 let originalConsole: any;
 let consoleState: ConsoleState;
+let mockConsoleOptions: MockConsoleOptions | undefined;
 
 let consoleProxyHandler: ProxyHandler<IndexableConsole> = {
   get(target, propKey: PropertyKey) {
@@ -13,14 +12,18 @@ let consoleProxyHandler: ProxyHandler<IndexableConsole> = {
 
     return function(...args: any[]) {
       consoleState.record(method, args[0]);
-      originalMethod.apply(originalConsole, args);
+
+      if (mockConsoleOptions !== undefined && mockConsoleOptions.suppressOutput) {
+        originalMethod.apply(originalConsole, args);
+      }
     };
   },
 };
 
-export function mockConsole(): MockConsole {
+export default function mockConsole(options?: MockConsoleOptions): MockConsole {
   originalConsole = console;
   consoleState = new ConsoleState();
+  mockConsoleOptions = options;
 
   console = new Proxy(console, consoleProxyHandler);
 

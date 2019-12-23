@@ -1,11 +1,11 @@
 import * as util from 'util';
-import { mockConsole, resetConsole } from '../mock-console';
+import mockConsole from '../mock-console';
 
 const { test } = QUnit;
 
 QUnit.module('mock-console', function() {
   test('mocks the console when called', function(assert) {
-    mockConsole();
+    let { resetConsole } = mockConsole();
 
     assert.ok(util.types.isProxy(console));
 
@@ -13,7 +13,7 @@ QUnit.module('mock-console', function() {
   });
 
   test('resets the console when resetConsole called', function(assert) {
-    mockConsole();
+    let { resetConsole } = mockConsole();
 
     assert.ok(util.types.isProxy(console));
 
@@ -33,7 +33,7 @@ QUnit.module('mock-console', function() {
   });
 
   test('captures state when console methods are called', function(assert) {
-    let { consoleState } = mockConsole();
+    let { resetConsole, consoleState } = mockConsole();
 
     console.log('This is a message');
 
@@ -43,7 +43,7 @@ QUnit.module('mock-console', function() {
   });
 
   test('captures state when console methods are called repeatedly', function(assert) {
-    let { consoleState } = mockConsole();
+    let { resetConsole, consoleState } = mockConsole();
 
     console.log('This is a message');
     console.log('And so is this');

@@ -22,7 +22,7 @@ QUnit.module('fixture-cache', function(hooks) {
 
     let fixtureCache = new FixtureCache(fixturifyFixtures.baseDir);
 
-    assert.ok(fixtureCache.matches('fixture1.txt', 'I am the first fixture'));
+    assert.ok(fixtureCache.matches('fixture1', 'I am the first fixture'));
     assert.equal(fixtureCache.fixtures.size, 2);
   });
 });

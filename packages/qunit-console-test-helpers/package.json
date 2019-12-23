@@ -2,7 +2,7 @@
   "name": "qunit-console-test-helpers",
   "version": "0.0.1",
   "description": "QUnit test helpers for creating console UIs",
-  "main": "index.js",
+  "main": "lib/index.js",
   "repository": "http://github.com/scalvert/console-test-helpers",
   "author": "scalvert",
   "license": "MIT",
@@ -17,7 +17,12 @@
     "prepublishOnly": "yarn build",
     "postpublish": "yarn clean"
   },
+  "dependencies": {
+    "console-test-helpers": "^0.0.1"
+  },
   "devDependencies": {
+    "@types/qunit": "^2.9.0",
+    "qunit": "^2.9.3",
     "typescript": "^3.7.3"
   }
 }
