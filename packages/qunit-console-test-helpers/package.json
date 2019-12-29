@@ -18,7 +18,7 @@
     "postpublish": "yarn clean"
   },
   "dependencies": {
-    "console-test-helpers": "^0.0.1"
+    "console-test-helpers": "^0.1.0"
   },
   "devDependencies": {
     "@types/qunit": "^2.9.0",
