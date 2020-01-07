@@ -1,6 +1,6 @@
 {
   "name": "console-test-helpers",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Test helpers for building console UIs",
   "main": "lib/index.js",
   "repository": "http://github.com/scalvert/console-test-helpers",
