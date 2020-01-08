@@ -30,24 +30,9 @@
     "lerna": "^3.19.0",
     "lint-staged": "^9.5.0",
     "prettier": "^1.19.1",
-    "release-it": "^12.2.1",
-    "release-it-lerna-changelog": "^1.0.3",
     "typescript": "^3.7.4"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
-  },
-  "release-it": {
-    "plugins": {
-      "release-it-lerna-changelog": {
-        "infile": "CHANGELOG.md"
-      }
-    },
-    "git": {
-      "tagName": "v${version}"
-    },
-    "github": {
-      "release": true
-    }
   }
 }

@@ -7,7 +7,7 @@ type AssertResult = {
   message: string;
 };
 
-export default class FixtureAssertions {
+export default class ConsoleAssertions {
   constructor(
     private fixtureCache: FixtureCache,
     private consoleState: ConsoleState,

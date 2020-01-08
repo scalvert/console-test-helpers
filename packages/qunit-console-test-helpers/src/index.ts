@@ -1,8 +1,8 @@
 import { mockConsole, FixtureCache, ConsoleState, MockConsoleOptions } from 'console-test-helpers';
-import FixtureAssertions from './fixture-assertions';
+import ConsoleAssertions from './console-assertions';
 
 interface ConsoleObject {
-  console: () => FixtureAssertions;
+  console: () => ConsoleAssertions;
 }
 interface ConsoleAssert extends Assert, ConsoleObject {}
 
@@ -22,8 +22,8 @@ export function setupMockConsole(hooks: NestedHooks, options: MockConsoleOptions
     resetConsole();
   });
 
-  (<ConsoleAssert>QUnit.assert).console = function(): FixtureAssertions {
-    return new FixtureAssertions(fixtureCache, consoleState, this);
+  (<ConsoleAssert>QUnit.assert).console = function(): ConsoleAssertions {
+    return new ConsoleAssertions(fixtureCache, consoleState, this);
   };
 }
 
