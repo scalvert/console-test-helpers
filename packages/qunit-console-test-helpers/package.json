@@ -1,6 +1,6 @@
 {
   "name": "qunit-console-test-helpers",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "QUnit test helpers for creating console UIs",
   "main": "lib/index.js",
   "repository": "http://github.com/scalvert/console-test-helpers",
