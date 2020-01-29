@@ -2,12 +2,7 @@
 
 When building CLIs that output to the console, it's useful to be able to record
 and validate the console output for subsequent verification. Doing so requires a
-few useful helpers:
-
-- A console replacement to record the _actual_ console output
-- A fixture mechanism to store the _expected_ output
-
-`console-test-helpers` provides the above.
+console replacement to record the _actual_ console output. `console-test-helpers` provides this.
 
 ## Installation
 
@@ -26,7 +21,25 @@ in addition to acting as a proxy for all console calls. This means the console w
 the same, but will gather output for later validation. Validation can be performed using
 fixtures that can be asserted against.
 
-Below is an example using `qunit-console-test-helpers`, the sister package to `console-test-helpers`.
+Below is an example of its usage in `qunit-console-test-helpers`, this sister package to `console-test-helpers`.
+
+```ts
+export function setupMockConsole(hooks: NestedHooks, options: MockConsoleOptions) {
+  let resetConsole: () => void;
+
+  setupFixtures(options); // from the qunit-fixtures package
+
+  hooks.beforeEach(function() {
+    ({ resetConsole, consoleState } = mockConsole(options));
+  });
+
+  hooks.afterEach(function() {
+    resetConsole();
+  });
+}
+```
+
+And below is how it's used within tests.
 
 ```js
 import { module, test } from 'qunit';
