@@ -1,18 +1,17 @@
-import { mockConsole, FixtureCache, ConsoleState, MockConsoleOptions } from 'console-test-helpers';
-import ConsoleAssertions from './console-assertions';
+import { ConsoleState, MockConsoleOptions, mockConsole } from 'console-test-helpers';
 
-interface ConsoleObject {
-  console: () => ConsoleAssertions;
+import { setupFixtures } from 'qunit-fixtures';
+
+export let consoleState: ConsoleState;
+
+export function getConsoleState(method: string = 'log') {
+  return consoleState.getState(method);
 }
-interface ConsoleAssert extends Assert, ConsoleObject {}
-
-let fixtureCache: FixtureCache;
 
 export function setupMockConsole(hooks: NestedHooks, options: MockConsoleOptions) {
   let resetConsole: () => void;
-  let consoleState: ConsoleState;
 
-  setupFixtureCache(options.fixturePath);
+  setupFixtures(options);
 
   hooks.beforeEach(function() {
     ({ resetConsole, consoleState } = mockConsole(options));
@@ -21,14 +20,4 @@ export function setupMockConsole(hooks: NestedHooks, options: MockConsoleOptions
   hooks.afterEach(function() {
     resetConsole();
   });
-
-  (<ConsoleAssert>QUnit.assert).console = function(): ConsoleAssertions {
-    return new ConsoleAssertions(fixtureCache, consoleState, this);
-  };
-}
-
-function setupFixtureCache(fixturePath: string) {
-  if (typeof fixturePath === undefined) {
-    fixtureCache = new FixtureCache(fixturePath);
-  }
 }

@@ -13,7 +13,7 @@ let consoleProxyHandler: ProxyHandler<IndexableConsole> = {
     return function(...args: any[]) {
       consoleState.record(method, args[0]);
 
-      if (mockConsoleOptions !== undefined && mockConsoleOptions.suppressOutput) {
+      if (mockConsoleOptions !== undefined && !mockConsoleOptions.suppressOutput) {
         originalMethod.apply(originalConsole, args);
       }
     };

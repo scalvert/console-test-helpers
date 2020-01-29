@@ -10,11 +10,10 @@
     "build": "tsc",
     "dev": "tsc -w",
     "clean": "rm -rf lib/*",
-    "lint": "eslint --ext js,ts .",
     "test": "yarn build && qunit lib/tests && yarn clean",
     "test:dev": "yarn build && qunit lib/tests",
     "test:debug": "yarn build && node --inspect-brk node_modules/.bin/qunit lib/tests",
-    "prepublishOnly": "yarn build",
+    "prepublish": "yarn build",
     "postpublish": "yarn clean"
   },
   "devDependencies": {
