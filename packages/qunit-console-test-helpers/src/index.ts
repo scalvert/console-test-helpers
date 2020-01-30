@@ -2,10 +2,10 @@ import { ConsoleState, MockConsoleOptions, mockConsole } from 'console-test-help
 
 import { setupFixtures } from 'qunit-fixtures';
 
-export let consoleState: ConsoleState;
+let consoleState: ConsoleState;
 
-export function getConsoleState(method: string = 'log') {
-  return consoleState.getState(method);
+export function getConsoleState() {
+  return consoleState;
 }
 
 export function setupMockConsole(hooks: NestedHooks, options: MockConsoleOptions) {

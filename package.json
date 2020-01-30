@@ -5,6 +5,7 @@
   "scripts": {
     "build": "lerna run build",
     "clean": "lerna run clean",
+    "link": "lerna link --force-local",
     "lint": "eslint --cache --ext=js,ts .",
     "test": "lerna run test"
   },

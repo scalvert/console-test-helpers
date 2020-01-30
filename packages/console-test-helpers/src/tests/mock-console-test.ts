@@ -1,4 +1,5 @@
 import * as util from 'util';
+
 import mockConsole from '../mock-console';
 
 const { test } = QUnit;
@@ -38,6 +39,18 @@ QUnit.module('mock-console', function() {
     console.log('This is a message');
 
     assert.equal(consoleState.getState('log'), 'This is a message');
+
+    resetConsole();
+  });
+
+  test('throws when invalid console methods are retrieved from state', function(assert) {
+    let { resetConsole, consoleState } = mockConsole();
+
+    console.log('This is a message');
+
+    assert.throws(() => {
+      consoleState.getState('foo');
+    });
 
     resetConsole();
   });
